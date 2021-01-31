@@ -25,6 +25,10 @@ module TalentSteps
   step 'the platform should respond this request was successful' do
     expect(page.status_code).to eq(200)
   end
+
+  step 'I should see :name' do |name|
+    expect(page).to have_content name
+  end
 end
 
 RSpec.configure { |c| c.include TalentSteps }

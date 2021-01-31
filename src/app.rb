@@ -7,6 +7,7 @@ class App < Sinatra::Base
   end
 
   get '/talent' do
-    erb :talent
+    names = ["Homer Simpson", "Frank Reynolds", "Diane Nguyen", "Krusty the Clown"]
+    erb :talent, locals: {names: names}
   end
 end
