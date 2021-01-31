@@ -11,7 +11,9 @@ class App < Sinatra::Base
     s = File.read('talent.json')
     talent = JSON.parse(s)
 
-    names = if params['location']
+    location = params['location']&.downcase
+
+    names = if location && !location.empty?
               talent.map { |model| model['name'] if model['location'].downcase == params['location'].downcase }
             else
               talent.map { |model| model['name'] }
