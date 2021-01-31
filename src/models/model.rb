@@ -6,7 +6,17 @@ class Model
     s = File.read(TALENT)
     talent = JSON.parse(s)
     talent.map do |model|
-      self.new(model['name'], model['location'], model['date_of_birth'])
+      new(model['name'], model['location'], model['date_of_birth'])
+    end
+  end
+
+  def self.find_by_location(location)
+    return all if location.nil? || location.empty?
+
+    s = File.read(TALENT)
+    talent = JSON.parse(s)
+    talent.filter_map do |model|
+      new(model['name'], model['location'], model['date_of_birth']) if model['location'].downcase == location.downcase
     end
   end
 
