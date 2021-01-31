@@ -6,9 +6,15 @@
 </head>
 
 <body>
+   <form method="GET">
+      <label for="location">Location</label>
+      <input type="text" name="location">
+      <input type="submit" value="filter">
+   </form>
+   <br>
    <% talent.each do |model| %>
       <%= model.name %>
-      <\br>
+      <br>
    <% end %>
 </body>
 </html>

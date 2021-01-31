@@ -23,7 +23,9 @@ module TalentSteps
   end
 
   step 'I request to see all talent in :location' do |location|
-    visit "/talent?location=#{location}"
+    visit '/talent'
+    fill_in 'location', with: location
+    click_button 'filter'
   end
 
   step 'the platform should respond this request was successful' do
