@@ -17,6 +17,8 @@ Feature: Viewing Talent
 
   Scenario: User requests to see talent by location
     When I request to see all talent in "Springfield"
-    Then the platform should respond that this request wass successful
+    Then the platform should respond this request was successful
     And I should see "Homer Simpson"
     And I should see "Krusty the Clown"
+    And I should not see "Diane Nguyen"
+    And I should not see "Frank Reynolds"
