@@ -20,8 +20,14 @@ class Model
   end
 
   def self.read_file
-    s = File.read(TALENT)
-    JSON.parse(s)
+    begin
+      s = File.read(TALENT)
+      JSON.parse(s)
+    rescue JSON::ParserError => parse_error
+      []
+    rescue Errno::ENOENT => read_error
+      []
+    end
   end
 
   def initialize(name, location, date_of_birth)

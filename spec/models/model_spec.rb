@@ -94,5 +94,19 @@ RSpec.describe Model do
         have_attributes(name: 'Diane Nguyen', location: 'Hollywoo', date_of_birth: '1980-03-19')
       ]
     end
+
+    it 'handles JSON errors' do
+      allow(File).to receive(:read).with('talent.json').and_return('')
+
+      talent = Model.find_by_location('')
+      expect(talent).to match_array []
+    end
+
+    it 'handles file read errors' do
+      allow(File).to receive(:read).with('talent.json').and_raise(Errno::ENOENT.new("file doesn't exist or something"))
+
+      talent = Model.find_by_location('')
+      expect(talent).to match_array []
+    end
   end
 end
