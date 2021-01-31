@@ -8,14 +8,14 @@ module TalentSteps
   TALENT_JSON = 'talent.json'
 
   step 'there is a valid talent JSON containing the following users:' do |table|
-    s = File.read(TALENT_JSON)
-    talent = JSON.parse(s)
-
-    table.hashes.each do |row|
-      talent.each do |model|
-        expect(row).to be(model) if row['name'] == model['name']
-      end
+    talent = table.hashes.map do |model|
+      {name: model['Name'], location: model['Location'], date_of_birth: model['Date of Birth']}
     end
+    File.write(TALENT_JSON, talent.to_json)
+  end
+
+  step 'the talent JSON is empty' do
+    File.write(TALENT_JSON, [].to_json)
   end
 
   step 'I request to see all the talent' do
@@ -36,6 +36,14 @@ module TalentSteps
 
   step 'I should not see :name' do |name|
     expect(page).not_to have_content name
+  end
+
+  step 'I should see no names' do
+    s = File.read(TALENT_JSON)
+    talent = JSON.parse(s)
+    talent.each do |model|
+      expect(page).not_to have_content(model['name'])
+    end
   end
 end
 
