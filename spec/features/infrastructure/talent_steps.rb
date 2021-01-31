@@ -9,7 +9,7 @@ module TalentSteps
 
   step 'there is a valid talent JSON containing the following users:' do |table|
     talent = table.hashes.map do |model|
-      {name: model['Name'], location: model['Location'], date_of_birth: model['Date of Birth']}
+      { name: model['Name'], location: model['Location'], date_of_birth: model['Date of Birth'] }
     end
     File.write(TALENT_JSON, talent.to_json)
   end

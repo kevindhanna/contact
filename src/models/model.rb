@@ -1,5 +1,6 @@
 class Model
   attr_reader :name, :location, :date_of_birth
+
   TALENT = 'talent.json'
 
   def self.all

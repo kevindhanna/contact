@@ -15,10 +15,8 @@ RSpec.describe Model do
       allow(File).to receive(:read).with('talent.json').and_return(talent.to_json)
 
       talent = Model.all
-      expect(talent).to match_array [
-                          have_attributes(name: 'Bojack Horseman', location: 'Hollywoo', date_of_birth: '1964-01-02'),
-                          have_attributes(name: 'Hank Hill', location: 'Arian', date_of_birth: '1953-04-15')
-                        ]
+      expect(talent).to match_array [have_attributes(name: 'Bojack Horseman', location: 'Hollywoo', date_of_birth: '1964-01-02'),
+                                     have_attributes(name: 'Hank Hill', location: 'Arian', date_of_birth: '1953-04-15')]
     end
   end
 
@@ -33,10 +31,10 @@ RSpec.describe Model do
 
       talent = Model.find_by_location(nil)
       expect(talent).to match_array [
-                          have_attributes(name: 'Bojack Horseman', location: 'Hollywoo', date_of_birth: '1964-01-02'),
-                          have_attributes(name: 'Hank Hill', location: 'Arian', date_of_birth: '1953-04-15'),
-                          have_attributes(name: 'Diane Nguyen', location: 'Hollywoo', date_of_birth: '1980-03-19')
-                        ]
+        have_attributes(name: 'Bojack Horseman', location: 'Hollywoo', date_of_birth: '1964-01-02'),
+        have_attributes(name: 'Hank Hill', location: 'Arian', date_of_birth: '1953-04-15'),
+        have_attributes(name: 'Diane Nguyen', location: 'Hollywoo', date_of_birth: '1980-03-19')
+      ]
     end
 
     it 'returns matching models for a location' do
@@ -49,9 +47,9 @@ RSpec.describe Model do
 
       talent = Model.find_by_location('Hollywoo')
       expect(talent).to match_array [
-                          have_attributes(name: 'Bojack Horseman', location: 'Hollywoo', date_of_birth: '1964-01-02'),
-                          have_attributes(name: 'Diane Nguyen', location: 'Hollywoo', date_of_birth: '1980-03-19')
-                        ]
+        have_attributes(name: 'Bojack Horseman', location: 'Hollywoo', date_of_birth: '1964-01-02'),
+        have_attributes(name: 'Diane Nguyen', location: 'Hollywoo', date_of_birth: '1980-03-19')
+      ]
     end
 
     it 'returns models for a location without case sensitivity' do
@@ -64,9 +62,9 @@ RSpec.describe Model do
 
       talent = Model.find_by_location('HOLLYWOO')
       expect(talent).to match_array [
-                          have_attributes(name: 'Bojack Horseman', location: 'Hollywoo', date_of_birth: '1964-01-02'),
-                          have_attributes(name: 'Diane Nguyen', location: 'Hollywoo', date_of_birth: '1980-03-19')
-                        ]
+        have_attributes(name: 'Bojack Horseman', location: 'Hollywoo', date_of_birth: '1964-01-02'),
+        have_attributes(name: 'Diane Nguyen', location: 'Hollywoo', date_of_birth: '1980-03-19')
+      ]
     end
 
     it 'returns no models for location with no talent' do
@@ -91,10 +89,10 @@ RSpec.describe Model do
 
       talent = Model.find_by_location('')
       expect(talent).to match_array [
-                          have_attributes(name: 'Bojack Horseman', location: 'Hollywoo', date_of_birth: '1964-01-02'),
-                          have_attributes(name: 'Hank Hill', location: 'Arian', date_of_birth: '1953-04-15'),
-                          have_attributes(name: 'Diane Nguyen', location: 'Hollywoo', date_of_birth: '1980-03-19')
-                        ]
+        have_attributes(name: 'Bojack Horseman', location: 'Hollywoo', date_of_birth: '1964-01-02'),
+        have_attributes(name: 'Hank Hill', location: 'Arian', date_of_birth: '1953-04-15'),
+        have_attributes(name: 'Diane Nguyen', location: 'Hollywoo', date_of_birth: '1980-03-19')
+      ]
     end
   end
 end
