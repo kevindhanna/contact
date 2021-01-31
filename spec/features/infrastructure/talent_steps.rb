@@ -28,6 +28,9 @@ module TalentSteps
     click_button 'filter'
   end
 
+  step 'I request to see the root page' do
+    visit '/'
+  end
   step 'the platform should respond this request was successful' do
     expect(page.status_code).to eq(200)
   end
@@ -38,6 +41,11 @@ module TalentSteps
 
   step 'I should not see :name' do |name|
     expect(page).not_to have_content name
+  end
+
+  step 'I should be on the talent page' do
+    # puts page.methods.sort
+    expect(page.current_path).to eq '/talent'
   end
 
   step 'I should see no names' do

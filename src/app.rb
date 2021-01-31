@@ -8,6 +8,10 @@ class App < Sinatra::Base
     set :views, proc { File.join(root, '/views') }
   end
 
+  get '/' do
+    redirect '/talent'
+  end
+
   get '/talent' do
     location = params['location']
 

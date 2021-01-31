@@ -8,7 +8,7 @@ Simple app to visualise a list of models with limited filtering
 - clone this repository
 - run `bundle install -path vendor/bundle`
 - run `bundle exec rackup`
-- open `http://localhost:9292/talent` in a browser
+- open `http://localhost:9292` in a browser
 
 # Run Tests
 
