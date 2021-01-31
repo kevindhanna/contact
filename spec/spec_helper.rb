@@ -1,3 +1,6 @@
+require 'capybara/rspec'
+require_relative '../src/app'
+
 # require turnip/cucumber steps
 Dir.glob(File.expand_path("./features/infrastructure/*steps.rb", File.dirname(__FILE__))) { |f| require f }
 
@@ -17,6 +20,7 @@ Dir.glob(File.expand_path("./features/infrastructure/*steps.rb", File.dirname(__
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  Capybara.app = App
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
