@@ -5,7 +5,7 @@ step 'test' do
 end
 
 module TalentSteps
-  TALENT_JSON = "talent.json"
+  TALENT_JSON = 'talent.json'
 
   step 'there is a valid talent JSON containing the following users:' do |table|
     s = File.read(TALENT_JSON)
