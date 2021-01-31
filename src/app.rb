@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'json'
+require_relative 'models/model'
 
 class App < Sinatra::Base
   configure do
@@ -8,17 +9,10 @@ class App < Sinatra::Base
   end
 
   get '/talent' do
-    s = File.read('talent.json')
-    talent = JSON.parse(s)
+    location = params['location']
 
-    location = params['location']&.downcase
+    talent = Model.find_by_location(location)
 
-    names = if location && !location.empty?
-              talent.map { |model| model['name'] if model['location'].downcase == params['location'].downcase }
-            else
-              talent.map { |model| model['name'] }
-            end
-
-    erb :talent, locals: { names: names }
+    erb :talent, locals: { talent: talent }
   end
 end
